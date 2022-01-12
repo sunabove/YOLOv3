@@ -1,3 +1,9 @@
 
 *.weights
 *.pyc
+*.pgm
+mnist/mnist_test/*
+mnist/mnist_train/*
+mnist/mnist_test.txt
+mnist/mnist_train.txt
+log/events.out.tfevents.1641967778.DESKTOP-DVRT5EI.1068.0.v2
