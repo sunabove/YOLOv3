@@ -307,13 +307,9 @@ def detect_image(Yolo, image_path, output_path, input_size=416, show=False, CLAS
 
     if output_path != '': cv2.imwrite(output_path, image)
     if show:
-        # Show the image
-        cv2.imshow("predicted image", image)
-        # Load and hold the image
-        cv2.waitKey(0)
-        # To close the window after the required kill value was provided
-        cv2.destroyAllWindows()
-        
+        import matplotlib.pyplot as plt
+        plt.imshow( image )
+        plt.show()        
     return image
 
 def Predict_bbox_mp(Frames_data, Predicted_data, Processing_times):
