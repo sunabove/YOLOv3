@@ -35,6 +35,14 @@ pass
 
 def main():
     global TRAIN_FROM_CHECKPOINT
+
+    LINE = "*"*60
+    print( "" )
+    print( LINE )
+    print( f"YOLO_TYPE = {YOLO_TYPE}" )
+    print( f"Darknet_weights = {Darknet_weights}" )
+    print( LINE )
+    print()
     
     gpus = tf.config.experimental.list_physical_devices('GPU')
     print(f'GPUs {gpus}')

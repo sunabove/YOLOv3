@@ -25,6 +25,7 @@ YOLO_IOU_LOSS_THRESH        = 0.5
 YOLO_ANCHOR_PER_SCALE       = 3
 YOLO_MAX_BBOX_PER_SCALE     = 100
 YOLO_INPUT_SIZE             = 416
+
 if YOLO_TYPE                == "yolov4":
     YOLO_ANCHORS            = [[[12,  16], [19,   36], [40,   28]],
                                [[36,  75], [76,   55], [72,  146]],
