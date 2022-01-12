@@ -19,6 +19,7 @@ image_info = open(label_txt).readlines()[ID].split()
 
 image_path = image_info[0]
 image = cv2.imread(image_path)
+
 for bbox in image_info[1:]:
     bbox = bbox.split(",")
     image = cv2.rectangle(image,(int(float(bbox[0])),

@@ -70,8 +70,12 @@ def load_yolo_weights(model, weights_file):
                 bn_layer.set_weights(bn_weights)
             else:
                 conv_layer.set_weights([conv_weights, conv_bias])
+            pass
+        pass
 
         assert len(wf.read()) == 0, 'failed to read all data'
+    pass
+pass
 
 def Load_Yolo_model():
     gpus = tf.config.experimental.list_physical_devices('GPU')
