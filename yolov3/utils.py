@@ -309,12 +309,12 @@ def detect_image(Yolo, image_path, output_path, input_size=416, show=False, CLAS
     image = draw_bbox(original_image, bboxes, CLASSES=CLASSES, rectangle_colors=rectangle_colors)
     # CreateXMLfile("XML_Detections", str(int(time.time())), original_image, bboxes, read_class_names(CLASSES))
 
-    if output_path != '': cv2.imwrite(output_path, image)
-    if show:
-        import matplotlib.pyplot as plt
-        plt.imshow( image )
-        plt.show()        
+    if output_path != '':
+        cv2.imwrite(output_path, image)
+    pass
+           
     return image
+pass
 
 def Predict_bbox_mp(Frames_data, Predicted_data, Processing_times):
     gpus = tf.config.experimental.list_physical_devices('GPU')
