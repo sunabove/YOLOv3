@@ -126,6 +126,7 @@ def main():
         return global_steps.numpy(), optimizer.lr.numpy(), giou_loss.numpy(), conf_loss.numpy(), prob_loss.numpy(), total_loss.numpy()
 
     validate_writer = tf.summary.create_file_writer(TRAIN_LOGDIR)
+
     def validate_step(image_data, target):
         with tf.GradientTape() as tape:
             pred_result = yolo(image_data, training=False)
@@ -141,12 +142,15 @@ def main():
                 prob_loss += loss_items[2]
 
             total_loss = giou_loss + conf_loss + prob_loss
+        pass
             
         return giou_loss.numpy(), conf_loss.numpy(), prob_loss.numpy(), total_loss.numpy()
+    pass
 
     mAP_model = Create_Yolo(input_size=YOLO_INPUT_SIZE, CLASSES=TRAIN_CLASSES) # create second model to measure mAP
 
     best_val_loss = 1000 # should be large at start
+
     for epoch in range(TRAIN_EPOCHS):
         for image_data, target in trainset:
             results = train_step(image_data, target)
@@ -188,6 +192,8 @@ def main():
         if not TRAIN_SAVE_BEST_ONLY and not TRAIN_SAVE_CHECKPOINT:
             save_directory = os.path.join(TRAIN_CHECKPOINTS_FOLDER, TRAIN_MODEL_NAME)
             yolo.save_weights(save_directory)
+        pass
+    pass
 
     # measure mAP of trained custom model
     try:
@@ -195,6 +201,8 @@ def main():
         get_mAP(mAP_model, testset, score_threshold=TEST_SCORE_THRESHOLD, iou_threshold=TEST_IOU_THRESHOLD)
     except UnboundLocalError:
         print("You don't have saved model weights to measure mAP, check TRAIN_SAVE_BEST_ONLY and TRAIN_SAVE_CHECKPOINT lines in configs.py")
+    pass
         
 if __name__ == '__main__':
     main()
+pass

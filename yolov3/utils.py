@@ -129,7 +129,8 @@ def image_preprocess(image, target_size, gt_boxes=None):
         gt_boxes[:, [0, 2]] = gt_boxes[:, [0, 2]] * scale + dw
         gt_boxes[:, [1, 3]] = gt_boxes[:, [1, 3]] * scale + dh
         return image_paded, gt_boxes
-
+    pass
+pass
 
 def draw_bbox(image, bboxes, CLASSES=YOLO_COCO_CLASSES, show_label=True, show_confidence = True, Text_colors=(255,255,0), rectangle_colors='', tracking=False):   
     NUM_CLASS = read_class_names(CLASSES)
@@ -198,7 +199,7 @@ def bboxes_iou(boxes1, boxes2):
     ious          = np.maximum(1.0 * inter_area / union_area, np.finfo(np.float32).eps)
 
     return ious
-
+pass
 
 def nms(bboxes, iou_threshold, sigma=0.3, method='nms'):
     """
@@ -239,7 +240,7 @@ def nms(bboxes, iou_threshold, sigma=0.3, method='nms'):
             cls_bboxes = cls_bboxes[score_mask]
 
     return best_bboxes
-
+pass
 
 def postprocess_boxes(pred_bbox, original_image, input_size, score_threshold):
     valid_scale=[0, np.inf]
@@ -280,7 +281,7 @@ def postprocess_boxes(pred_bbox, original_image, input_size, score_threshold):
     coors, scores, classes = pred_coor[mask], scores[mask], classes[mask]
 
     return np.concatenate([coors, scores[:, np.newaxis], classes[:, np.newaxis]], axis=-1)
-
+pass
 
 def detect_image(Yolo, image_path, output_path, input_size=416, show=False, CLASSES=YOLO_COCO_CLASSES, score_threshold=0.3, iou_threshold=0.45, rectangle_colors=''):
     original_image      = cv2.imread(image_path)
@@ -343,7 +344,9 @@ def Predict_bbox_mp(Frames_data, Predicted_data, Processing_times):
             pred_bbox = tf.concat(pred_bbox, axis=0)
             
             Predicted_data.put(pred_bbox)
-
+        pass
+    pass
+pass
 
 def postprocess_mp(Predicted_data, original_frames, Processed_frames, Processing_times, input_size, CLASSES, score_threshold, iou_threshold, rectangle_colors, realtime):
     times = []
