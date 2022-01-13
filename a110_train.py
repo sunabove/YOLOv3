@@ -12,7 +12,11 @@ import os
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
 from tensorflow.python.client import device_lib
-print(device_lib.list_local_devices())
+
+if 0 : 
+    print(device_lib.list_local_devices())
+pass
+
 import shutil
 import numpy as np
 import tensorflow as tf
@@ -40,17 +44,22 @@ def main():
     print( "" )
     print( LINE )
     print( f"YOLO_TYPE = {YOLO_TYPE}" )
+    print( f"TRAIN_YOLO_TINY = {TRAIN_YOLO_TINY}" )
     print( f"Darknet_weights = {Darknet_weights}" )
     print( LINE )
-    print()
+    print(flush=True)
     
     gpus = tf.config.experimental.list_physical_devices('GPU')
     print(f'GPUs {gpus}')
+    
     if len(gpus) > 0:
         try: tf.config.experimental.set_memory_growth(gpus[0], True)
         except RuntimeError: pass
 
-    if os.path.exists(TRAIN_LOGDIR): shutil.rmtree(TRAIN_LOGDIR)
+    if os.path.exists(TRAIN_LOGDIR):
+        shutil.rmtree(TRAIN_LOGDIR)
+    pass
+
     writer = tf.summary.create_file_writer(TRAIN_LOGDIR)
 
     trainset = Dataset('train')
