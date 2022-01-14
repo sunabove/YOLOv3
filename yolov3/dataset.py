@@ -40,7 +40,7 @@ class Dataset(object):
         self.num_samples = len(self.annotations)
         self.num_batchs = int(np.ceil(self.num_samples / self.batch_size))
         self.batch_count = 0
-
+    pass
 
     def load_annotations(self, dataset_type):
         final_annotations = []

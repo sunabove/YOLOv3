@@ -73,6 +73,7 @@ def main():
     if TRAIN_TRANSFER:
         Darknet = Create_Yolo(input_size=YOLO_INPUT_SIZE, CLASSES=YOLO_COCO_CLASSES)
         load_yolo_weights(Darknet, Darknet_weights) # use darknet weights
+    pass
 
     yolo = Create_Yolo(input_size=YOLO_INPUT_SIZE, training=True, CLASSES=TRAIN_CLASSES)
     if TRAIN_FROM_CHECKPOINT:
@@ -81,6 +82,8 @@ def main():
         except ValueError:
             print("Shapes are incompatible, transfering Darknet weights")
             TRAIN_FROM_CHECKPOINT = False
+        pass
+    pass
 
     if TRAIN_TRANSFER and not TRAIN_FROM_CHECKPOINT:
         for i, l in enumerate(Darknet.layers):
@@ -90,9 +93,12 @@ def main():
                     yolo.layers[i].set_weights(layer_weights)
                 except:
                     print("skipping", yolo.layers[i].name)
+                pass
+            pass
+        pass
+    pass
     
     optimizer = tf.keras.optimizers.Adam()
-
 
     def train_step(image_data, target):
         with tf.GradientTape() as tape:
@@ -130,9 +136,13 @@ def main():
                 tf.summary.scalar("loss/giou_loss", giou_loss, step=global_steps)
                 tf.summary.scalar("loss/conf_loss", conf_loss, step=global_steps)
                 tf.summary.scalar("loss/prob_loss", prob_loss, step=global_steps)
+            pass
+
             writer.flush()
+        pass
             
         return global_steps.numpy(), optimizer.lr.numpy(), giou_loss.numpy(), conf_loss.numpy(), prob_loss.numpy(), total_loss.numpy()
+    pass
 
     validate_writer = tf.summary.create_file_writer(TRAIN_LOGDIR)
 
@@ -149,6 +159,7 @@ def main():
                 giou_loss += loss_items[0]
                 conf_loss += loss_items[1]
                 prob_loss += loss_items[2]
+            pass
 
             total_loss = giou_loss + conf_loss + prob_loss
         pass
@@ -180,12 +191,16 @@ def main():
             conf_val += results[1]
             prob_val += results[2]
             total_val += results[3]
+        pass
+
         # writing validate summary data
         with validate_writer.as_default():
             tf.summary.scalar("validate_loss/total_val", total_val/count, step=epoch)
             tf.summary.scalar("validate_loss/giou_val", giou_val/count, step=epoch)
             tf.summary.scalar("validate_loss/conf_val", conf_val/count, step=epoch)
             tf.summary.scalar("validate_loss/prob_val", prob_val/count, step=epoch)
+        pass
+
         validate_writer.flush()
             
         print("\n\ngiou_val_loss:{:7.2f}, conf_val_loss:{:7.2f}, prob_val_loss:{:7.2f}, total_val_loss:{:7.2f}\n\n".

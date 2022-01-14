@@ -107,6 +107,7 @@ def darknet53(input_data):
         input_data = residual_block(input_data, 1024, 512, 1024)
 
     return route_1, route_2, input_data
+pass
 
 def cspdarknet53(input_data):
     input_data = convolutional(input_data, (3, 3,  3,  32), activate_type="mish")
@@ -410,7 +411,6 @@ def Create_Yolo(input_size=416, channels=3, training=False, CLASSES=YOLO_COCO_CL
     return yolo
 pass
 
-
 def decode(conv_output, NUM_CLASS, i=0):
     # where i = 0, 1 or 2 to correspond to the three grid scales  
     conv_shape       = tf.shape(conv_output)
@@ -452,6 +452,7 @@ def decode(conv_output, NUM_CLASS, i=0):
 
     # calculating the predicted probability category box object
     return tf.concat([pred_xywh, pred_conf, pred_prob], axis=-1)
+pass
 
 
 def bbox_iou(boxes1, boxes2):
@@ -471,6 +472,7 @@ def bbox_iou(boxes1, boxes2):
     union_area = boxes1_area + boxes2_area - inter_area
 
     return 1.0 * inter_area / union_area
+pass
 
 def bbox_giou(boxes1, boxes2):
     boxes1 = tf.concat([boxes1[..., :2] - boxes1[..., 2:] * 0.5,
@@ -508,6 +510,7 @@ def bbox_giou(boxes1, boxes2):
     giou = iou - 1.0 * (enclose_area - union_area) / enclose_area
 
     return giou
+pass
 
 # testing (should be better than giou)
 def bbox_ciou(boxes1, boxes2):
@@ -535,7 +538,7 @@ def bbox_ciou(boxes1, boxes2):
     ciou_term = d + alpha * ar_loss
 
     return iou - ciou_term
-
+pass
 
 def compute_loss(pred, conv, label, bboxes, i=0, CLASSES=YOLO_COCO_CLASSES):
     NUM_CLASS = len(read_class_names(CLASSES))
@@ -585,3 +588,4 @@ def compute_loss(pred, conv, label, bboxes, i=0, CLASSES=YOLO_COCO_CLASSES):
     prob_loss = tf.reduce_mean(tf.reduce_sum(prob_loss, axis=[1,2,3,4]))
 
     return giou_loss, conf_loss, prob_loss
+pass
