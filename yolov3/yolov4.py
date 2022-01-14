@@ -260,8 +260,10 @@ def YOLOv3(input_layer, NUM_CLASS):
     conv = tf.concat([conv, route_2], axis=-1)
     conv = convolutional(conv, (1, 1, 768, 256))
     conv = convolutional(conv, (3, 3, 256, 512))
+
     conv = convolutional(conv, (1, 1, 512, 256))
     conv = convolutional(conv, (3, 3, 256, 512))
+
     conv = convolutional(conv, (1, 1, 512, 256))
     conv_mobj_branch = convolutional(conv, (3, 3, 256, 512))
 
@@ -274,8 +276,10 @@ def YOLOv3(input_layer, NUM_CLASS):
     conv = tf.concat([conv, route_1], axis=-1)
     conv = convolutional(conv, (1, 1, 384, 128))
     conv = convolutional(conv, (3, 3, 128, 256))
+
     conv = convolutional(conv, (1, 1, 256, 128))
     conv = convolutional(conv, (3, 3, 128, 256))
+    
     conv = convolutional(conv, (1, 1, 256, 128))
     conv_sobj_branch = convolutional(conv, (3, 3, 128, 256))
     
