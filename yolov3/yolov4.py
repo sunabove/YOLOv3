@@ -279,7 +279,7 @@ def YOLOv3(input_layer, NUM_CLASS):
 
     conv = convolutional(conv, (1, 1, 256, 128))
     conv = convolutional(conv, (3, 3, 128, 256))
-    
+
     conv = convolutional(conv, (1, 1, 256, 128))
     conv_sobj_branch = convolutional(conv, (3, 3, 128, 256))
     
@@ -406,8 +406,9 @@ def Create_Yolo(input_size=416, channels=3, training=False, CLASSES=YOLO_COCO_CL
         if training: output_tensors.append(conv_tensor)
         output_tensors.append(pred_tensor)
 
-    Yolo = tf.keras.Model(input_layer, output_tensors)
-    return Yolo
+    yolo = tf.keras.Model(input_layer, output_tensors)
+    return yolo
+pass
 
 
 def decode(conv_output, NUM_CLASS, i=0):
