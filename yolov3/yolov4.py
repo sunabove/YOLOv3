@@ -242,6 +242,7 @@ def cspdarknet53_tiny(input_data): # not sure how this should be called
 def YOLOv3(input_layer, NUM_CLASS):
     # After the input layer enters the Darknet-53 network, we get three branches
     route_1, route_2, conv = darknet53(input_layer)
+    
     # See the orange module (DBL) in the figure above, a total of 5 Subconvolution operation
     conv = convolutional(conv, (1, 1, 1024,  512))
     conv = convolutional(conv, (3, 3,  512, 1024))
