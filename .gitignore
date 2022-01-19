@@ -10,3 +10,4 @@ checkpoints/yolov3_custom.data-00000-of-00001
 checkpoints/checkpoint
 checkpoints/yolov3_custom.index
 checkpoints/checkpoint
+ModelData/*
