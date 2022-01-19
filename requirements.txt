@@ -4,9 +4,11 @@ wget
 seaborn
 tensorflow
 tensorflow-gpu
+jupyter-tensorboard
 opencv-contrib-python-headless
 tqdm
 pandas
 awscli
 urllib3
 mss
+
